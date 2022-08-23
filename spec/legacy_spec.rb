@@ -1,18 +1,37 @@
-
+require "ingredient"
+require "snack"
 
 ########## Partie RSpec ##########
 RSpec.describe "Shit load of crap you were told would be 'state of the art' during the interview..." do
   # # Ingredient
-  it 'has a name'
+  it 'has a name' do
+    toto = Ingredient.new()
+    expect(toto.name.length).to be > 0
+  end
 
   # ## Ingredient's name
-  it 'is gloubiboulga'
-  it 'or is the given name in argument'
+  it 'is gloubiboulga' do
+    toto = Ingredient.new()
+    expect(toto.name).to eq('gloubiboulga')
+  end
+  it 'or is the given name in argument' do
+    arg = 'toto'
+    toto = Ingredient.new(arg)
+    expect(toto.name).to eq(arg)
+  end
 
-  # # Snack
-  it 'is shareable returns true'
-  it "has no '#brick' method"
-
+  context Snack do
+    before(:context) do
+      @toto = Snack.new()
+    end
+    it 'is shareable returns true' do
+      expect(@toto.shareable?()).to be_truthy
+    end
+    it "has no '#brick' method" do
+      expect(@toto.respond_to?(:brick)).to be_falsey
+    end
+  end
+  
   # # Sandwich
   it 'knows how many have been made so far'
   it 'can tell that no sanwich has been made so far'
